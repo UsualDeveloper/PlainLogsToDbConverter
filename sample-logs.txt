@@ -1,0 +1,8 @@
+2020-12-01 - User John logged in successfully.
+2020-12-01 - User Jack logged in successfully.
+2020-12-01 - User John marked DVD-1011 as favorite.
+2020-12-01 - There was an error: 1234.
+2020-12-01 - User John marked DVD-1011 as favorite.
+2020-12-03 - There was an error: 4321.
+2020-12-03 - User Jasmine logged in successfully.
+2020-12-03 - User Jasmine marked DVD-10123 as favorite.

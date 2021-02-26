@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PlainLogsToDbConverter.Configuration.Interfaces\PlainLogsToDbConverter.Configuration.Interfaces.csproj" />
+    <ProjectReference Include="..\PlainLogsToDbConverter.SqlLogger.Interfaces\PlainLogsToDbConverter.SqlLogger.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

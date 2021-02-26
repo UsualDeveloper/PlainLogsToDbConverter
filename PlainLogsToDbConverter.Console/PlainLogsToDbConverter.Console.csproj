@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="log-conversion-config.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="log-conversion-config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.CommandLineUtils" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PlainLogsToDbConverter.Processing\PlainLogsToDbConverter.Processing.csproj" />
+    <ProjectReference Include="..\PlainLogsToDbConverter.SqlLogger.Interfaces\PlainLogsToDbConverter.SqlLogger.Interfaces.csproj" />
+    <ProjectReference Include="..\PlainLogsToDbConverter.SqlLogger\PlainLogsToDbConverter.SqlLogger.csproj" />
+  </ItemGroup>
+
+</Project>
