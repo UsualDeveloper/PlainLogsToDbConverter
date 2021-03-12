@@ -22,7 +22,7 @@ Pattern matching uses standard C# Regex class pattern syntaxt. One important thi
 When a match is found for specific named group, its name represents extracted field's name.
 The matched group name and value are then used to fill target structured log template in the appropriate place.
 
-## Roadmap
+## Features summary
 This is very early version of the project, features supported so far:
  - converting text logs into structured information inserted into SQL database table
  - automatic table creation
