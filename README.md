@@ -3,8 +3,24 @@
 ## Description
 The project aims to help log analysis when there are only "plain old text logs" implemented, but a structured log information would help.
 
-The application read logs from plain text file and convert them into records inserted into a database table.
-The conversion process can be configured to extract specific parts of text logs as fields and save their values into separate columns in the target table.
+The application read logs from plain text file convert them into records inserted into an SQL database table.
+
+The conversion process can be divided into several steps:
+ 1. **Reading log entry from a text file**
+ 
+ This can be any plain text log file, however, currently only single line logs are supported (multiline logs are not be fully matched yet).
+
+ 2. **Matching log entry with any of the Regex patterns specified**
+ 
+ Standard C# Regex pattern suntax is used. The pattern can match important values with separate named subexpressions.
+ 
+ 3. **Values extracted with named matched subexpressions are used to fill structured log template**
+ 
+ Names of the matched groups are used to identify appropriate fields in the structured log template.
+ 
+ 4. **Structured log is inserted into a database table with appropriate values**
+ 
+ Defined fields are inserted into separate table columns for better logs filtering.
 
 ## How to use
 The logs conversion process is configured with *log-conversion-config.json* file.
