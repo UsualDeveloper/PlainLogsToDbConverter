@@ -2,13 +2,13 @@
 ## General info
 
 ### Description
-The project aim is to help "plain old text logs" analysis, by transforming log entries into more structured form and putting it into a database. User can configure values to be extracted from log text message and placed into separate columns in the target table.
+The project aim is to help "plain old text logs" analysis, by transforming log entries into more structured form and putting them into a database. User can configure values to be extracted from log text messages and placed into separate columns in the target table.
 
 ### Conversion
 The conversion process implemented in the application can be divided into several steps:
  1. **Reading log entry from a text file**
  
- This can be any plain text log file, however, currently only single line logs are supported (multiline logs are not be fully matched yet).
+ This can be any plain text log file, however, currently only single line log entries are supported (each line is treated like a separate log entry).
 
  2. **Matching log entry with any of the Regex patterns specified**
  
@@ -33,13 +33,13 @@ Configuration parameters:
 
 ## Log matching patterns and structured log templates
 ### Matching pattern
-Pattern matching uses standard C# Regex class pattern syntaxt. One important thing to note is additional function assigned to named capture groups, which are used to extract values for specific fields. Groups captured using defined Regex pattern are matched by name with fields defined in structured log templates.
+Pattern matching uses standard C# Regex class pattern syntaxt. It's important to note that names of the named capture groups defined in the pattern are used to extract values for specific fields.
 ### Structured log template
 When a match is found for specific named group, its name represents extracted field's name.
 The matched group name and value are then used to fill target structured log template in the appropriate place.
 
-## Features summary
-This is very early version of the project, features supported so far:
+## Feature summary
+Features supported so far:
  - converting text logs into structured information inserted into SQL database table
  - automatic table creation
  - automatic columns creation for each detected field mentioned in the structured templates
