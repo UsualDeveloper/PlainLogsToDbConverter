@@ -4,6 +4,8 @@
 ### Description
 The project aim is to help "plain old text logs" analysis, by transforming log entries into more structured form and putting them into a database. User can configure values to be extracted from log text messages and placed into separate columns in the target table.
 
+_**IMPORTANT:** The project is at an early stage of development and is still work in progress._
+
 ### Conversion
 The conversion process implemented in the application can be divided into several steps:
  1. **Reading log entry from a text file**
