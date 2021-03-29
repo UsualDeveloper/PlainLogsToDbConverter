@@ -1,37 +1,49 @@
-## Welcome to GitHub Pages
+# PlainLogsToDbConverter
+## General info
 
-You can use the [editor on GitHub](https://github.com/UsualDeveloper/PlainLogsToDbConverter/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+### Description
+The project aim is to help "plain old text logs" analysis, by transforming log entries into more structured form and putting them into a database. User can configure values to be extracted from log text messages and placed into separate columns in the target table.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+_**IMPORTANT:** The project is at an early stage of development and is still work in progress._
 
-### Markdown
+### Conversion
+The conversion process implemented in the application can be divided into several steps:
+ 1. **Reading log entry from a text file**
+ 
+ This can be any plain text log file, however, currently only single line log entries are supported (each line is treated like a separate log entry).
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+ 2. **Matching log entry with any of the Regex patterns specified**
+ 
+ Standard C# Regex pattern syntax is used. Patterns can match important values with separate named subexpressions.
+ 
+ 3. **Values extracted with named matched subexpressions are used to fill structured log template**
+ 
+ Names of the named matched subexpressions are used to identify appropriate fields in the structured log template.
+ 
+ 4. **Structured log is inserted into a database table with appropriate values**
+ 
+ Defined fields are inserted into separate table columns for better logs filtering.
 
-```markdown
-Syntax highlighted code block
+## How to use
+The logs conversion process is configured with *log-conversion-config.json* file.
+Sample file is included in the application repository.
+Configuration parameters:
+ - `InputLogFilePath` - path to the file to be processed
+ - `ConnectionString` - connection string to the target MS SQL Server database
+ - `LogTableName` - name of the table where the logs should be inserted - if the table does not exist, it will be created automatically
+ - `LogRegexTemplates` - array of log matching patterns matching and templates for structurized logs to be saved into a database. Log patterns and templates are described more thoroughly in the next section.
 
-# Header 1
-## Header 2
-### Header 3
+## Log matching patterns and structured log templates
+### Matching pattern
+Pattern matching uses standard C# Regex class pattern syntaxt. It's important to note that names of the named capture groups defined in the pattern are used to extract values for specific fields.
+### Structured log template
+When a match is found for specific named group, its name represents extracted field's name.
+The matched group name and value are then used to fill target structured log template in the appropriate place.
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/UsualDeveloper/PlainLogsToDbConverter/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Feature summary
+Features supported so far:
+ - converting text logs into structured information inserted into SQL database table
+ - automatic table creation
+ - automatic columns creation for each detected field mentioned in the structured templates
+ - conversion configuration using dedicated JSON file
+ - single-line log entries support
