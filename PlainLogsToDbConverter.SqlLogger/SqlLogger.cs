@@ -55,9 +55,9 @@ namespace PlainLogsToDbConverter.SqlLogger
         {
             var fieldNamesFound = new HashSet<string>();
 
-            foreach (var templateDefinition in settings.LogRegexTemplates)
+            foreach (var templateDefinition in settings.Patterns)
             {
-                string template = templateDefinition.Template;
+                string template = templateDefinition.StructuredTemplate;
                 int fieldStartIndex = template.IndexOf('{');
                 int fieldEndIndex;
                 while (fieldStartIndex >= 0 && fieldStartIndex < template.Length - 2)

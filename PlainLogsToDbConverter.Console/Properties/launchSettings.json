@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PlainLogsToDbConverter.Console": {
+      "commandName": "Project",
+      "commandLineArgs": ".\\Samples\\log-patterns-and-templates-sample\\log-conversion-config.json .\\Samples\\log-patterns-and-templates-sample\\sample-logs.txt"
+    }
+  }
+}

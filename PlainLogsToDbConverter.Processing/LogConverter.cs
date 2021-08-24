@@ -27,8 +27,9 @@ namespace PlainLogsToDbConverter.Processing
             var settings = this.conversionConfigService.GetConfigurationSettings();
 
             // TODO: add support for multiline log entries
-            var regexesToMatch = settings.LogRegexTemplates.Select(item => new { Pattern = new Regex(item.Pattern, RegexOptions.Singleline), Template = item.Template }).ToArray();
+            var regexesToMatch = settings.Patterns.Select(item => new { Pattern = new Regex(item.MatchingPattern, RegexOptions.Singleline), Template = item.StructuredTemplate }).ToArray();
 
+            // TODOL change to use logger
             ReportProgress($"Opening file: {settings.InputLogFilePath}...");
 
             using (var reader = fileService.OpenFileTextStream(settings.InputLogFilePath))
@@ -49,7 +50,7 @@ namespace PlainLogsToDbConverter.Processing
                         {
                             logsMatched++;
                             var fieldValues = matches[0].Groups.Cast<Group>().Select(g => (Name: g.Name, Value: g.Value));
-                            var orderedValues = SortToMatchTemplate(fieldValues, regex.Template);
+                            var orderedValues = SortFieldsToMatchTemplate(fieldValues, regex.Template);
 
                             logger.AddToLog(regex.Template, orderedValues.Cast<object>().ToArray());
 
@@ -69,8 +70,9 @@ namespace PlainLogsToDbConverter.Processing
             }
         }
 
-        private IEnumerable<string> SortToMatchTemplate(IEnumerable<(string Name, string Value)> fieldValues, string template)
+        private IEnumerable<string> SortFieldsToMatchTemplate(IEnumerable<(string Name, string Value)> fieldValues, string template)
         {
+            //TODO: optimize
             List<string> orderedValues = new List<string>(fieldValues.Count());
             int fieldStartIndex = template.IndexOf('{');
             while (fieldStartIndex > -1 && fieldStartIndex < template.Length)

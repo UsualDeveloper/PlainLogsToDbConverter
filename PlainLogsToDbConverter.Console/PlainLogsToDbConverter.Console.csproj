@@ -6,13 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="log-conversion-config.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="log-conversion-config.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Compile Remove="samples\**" />
+    <EmbeddedResource Remove="samples\**" />
+    <None Remove="samples\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,5 +22,9 @@
     <ProjectReference Include="..\PlainLogsToDbConverter.SqlLogger.Interfaces\PlainLogsToDbConverter.SqlLogger.Interfaces.csproj" />
     <ProjectReference Include="..\PlainLogsToDbConverter.SqlLogger\PlainLogsToDbConverter.SqlLogger.csproj" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy $(SolutionDir)Samples $(TargetDir)Samples\ /E /Y" />
+  </Target>
 
 </Project>

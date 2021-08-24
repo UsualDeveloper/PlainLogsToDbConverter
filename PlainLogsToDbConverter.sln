@@ -9,9 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlainLogsToDbConverter.SqlL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlainLogsToDbConverter.SqlLogger.Interfaces", "PlainLogsToDbConverter.SqlLogger.Interfaces\PlainLogsToDbConverter.SqlLogger.Interfaces.csproj", "{0ACD7ABF-B1EF-4593-ADB4-1F14BD82EE95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlainLogsToDbConverter.Processing", "PlainLogsToDbConverter.Processing\PlainLogsToDbConverter.Processing.csproj", "{5D1AD333-3B4D-4AF2-9C22-CD7266244363}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlainLogsToDbConverter.Processing", "PlainLogsToDbConverter.Processing\PlainLogsToDbConverter.Processing.csproj", "{5D1AD333-3B4D-4AF2-9C22-CD7266244363}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlainLogsToDbConverter.Configuration.Interfaces", "PlainLogsToDbConverter.Configuration.Interfaces\PlainLogsToDbConverter.Configuration.Interfaces.csproj", "{86ABCEE9-40DC-4159-B19B-F8A781EF0557}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{A13DD893-D1A8-448F-BB1B-0506B45DA72E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "log-patterns-and-templates-sample", "log-patterns-and-templates-sample", "{FD3F0B4D-CE66-47EF-907B-1F658D6BE569}"
+	ProjectSection(SolutionItems) = preProject
+		Samples\log-patterns-and-templates-sample\sample-logs.txt = Samples\log-patterns-and-templates-sample\sample-logs.txt
+		Samples\log-patterns-and-templates-sample\log-conversion-config.json = Samples\log-patterns-and-templates-sample\log-conversion-config.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +50,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FD3F0B4D-CE66-47EF-907B-1F658D6BE569} = {A13DD893-D1A8-448F-BB1B-0506B45DA72E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F0BE3EE4-D6CD-4DE8-8DE4-20F80B7651B1}

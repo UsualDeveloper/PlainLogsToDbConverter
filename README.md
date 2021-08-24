@@ -2,7 +2,7 @@
 ## General info
 
 ### Description
-The project aim is to help "plain old text logs" analysis, by transforming log entries into more structured form and putting them into a database. User can configure values to be extracted from log text messages and placed into separate columns in the target table.
+The project aim is to help "plain old text logs" analysis by transforming log entries into more structured form and putting them into a database. User can configure values to be extracted from log text messages and placed into separate columns in the target table.
 
 _**IMPORTANT:** The project is at an early stage of development and is still work in progress._
 
@@ -25,13 +25,19 @@ The conversion process implemented in the application can be divided into severa
  Defined fields are inserted into separate table columns for better logs filtering.
 
 ## How to use
-The logs conversion process is configured with *log-conversion-config.json* file.
-Sample file is included in the application repository.
-Configuration parameters:
- - `InputLogFilePath` - path to the file to be processed
+The application should be run with two command line arguments in the following order:
+ - path to conversion configuration file
+ - path to input file containing logs to be transformed
+
+ Sample application call:
+ _PlainLogsToDbConverter.Console.exe .\Samples\log-patterns-and-templates-sample\log-conversion-config.json .\Samples\log-patterns-and-templates-sample\sample-logs.txt_
+
+Configuration file parameters:
  - `ConnectionString` - connection string to the target MS SQL Server database
  - `LogTableName` - name of the table where the logs should be inserted - if the table does not exist, it will be created automatically
- - `LogRegexTemplates` - array of log matching patterns matching and templates for structurized logs to be saved into a database. Log patterns and templates are described more thoroughly in the next section.
+ - `Patterns` - array of log matching patterns matching and templates for structurized logs to be saved into a database. Log patterns and templates are described more thoroughly in the next section.
+
+ Sample configuration file is included in the application repository.
 
 ## Log matching patterns and structured log templates
 ### Matching pattern

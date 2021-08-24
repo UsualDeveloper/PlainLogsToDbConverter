@@ -10,21 +10,30 @@ namespace PlainLogsToDbConverter.Console
     {
         static void Main(string[] args)
         {
-            IHost host = Host.CreateDefaultBuilder(args)
+            using IHost host = Host.CreateDefaultBuilder()
                 .ConfigureServices(
                     (context, services) =>
                     services
                     .AddSingleton<ISqlLogger, SqlLogger.SqlLogger>()
                     .AddSingleton<IFileService, FileService>()
-                    .AddSingleton<IConversionConfigService, JsonConversionConfigService>()
+                    .AddSingleton<IConversionConfigService, ConversionConfigService>((provider) => new ConversionConfigService(args))
                     .AddSingleton<LogConverter>())
                 .Build();
 
             //Serilog.Debugging.SelfLog.Enable(m => Debug.WriteLine(m));
-            //AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
 
             var logConverter = host.Services.GetRequiredService<LogConverter>();
-            logConverter.ProcessLogFile(ReportProgress);
+
+            try
+            {
+                logConverter.ProcessLogFile(ReportProgress);
+
+                ConsoleUtils.WriteLineInColor("Conversion completed successfully.", System.ConsoleColor.Green);
+            }
+            catch (System.Exception ex)
+            {
+                ConsoleUtils.WriteLineInColor(ex.Message, System.ConsoleColor.Red);
+            }
 
             return;
         }

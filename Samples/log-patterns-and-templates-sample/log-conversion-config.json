@@ -1,0 +1,18 @@
+﻿{
+  "ConnectionString": "Data Source=(localdb)\\SqlTest;Initial Catalog=SqlTestDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False",
+  "LogTableName": "LogsDb",
+  "Patterns": [
+    {
+      "MatchingPattern": "(?<timestamp>\\S+) - User (?<user>\\w+) logged in successfully.",
+      "StructuredTemplate": "{timestamp} - User {user} logged in successfully"
+    },
+    {
+      "MatchingPattern": "(?<timestamp>\\S+) - User (?<user>\\w+) marked (?<product>\\w+) as favorite.",
+      "StructuredTemplate": "{timestamp} - User {user} marked {product} as favorite"
+    },
+    {
+      "MatchingPattern": "(?<timestamp>\\S+) - There was an error: (?<error_code>\\d+).",
+      "StructuredTemplate": "{timestamp} - There was an error: {error_code}"
+    }
+  ]
+}

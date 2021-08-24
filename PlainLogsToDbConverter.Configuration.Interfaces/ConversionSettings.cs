@@ -13,8 +13,13 @@ namespace PlainLogsToDbConverter.Configuration
 
         public string LogTableName { get; set; }
 
-        // TODO: replace value tuple
-        public IEnumerable<(string Pattern, string Template)> LogRegexTemplates { get; set; }
+        public IEnumerable<PatternAndTemplateDefinition> Patterns { get; set; }
+    }
+
+    public class PatternAndTemplateDefinition
+    {
+        public string MatchingPattern { get; set; }
+        public string StructuredTemplate { get; set; }
     }
 
     public class TableDescription
